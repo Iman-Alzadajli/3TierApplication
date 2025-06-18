@@ -1,6 +1,8 @@
-using BLL.Interfaces;
+﻿using BLL.Interfaces;
 using BLL.Repositories;
 using DAL.Context;
+using DAL.Entities.UserMangment;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace PAL.Shop
@@ -20,6 +22,22 @@ namespace PAL.Shop
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 
+            //identity 
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // يقفل لمدة 5 دقائق
+                options.Lockout.MaxFailedAccessAttempts = 5; // بعد 5 محاولات فاشلة
+                options.Lockout.AllowedForNewUsers = true;
+            });
+
+
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
@@ -37,6 +55,8 @@ namespace PAL.Shop
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+
 
             app.UseAuthorization();
 
