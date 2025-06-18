@@ -1,4 +1,4 @@
-# 🛒 ShopLayeredMVC – ASP.NET Core MVC Project (3-Tier Architecture)
+# 🛒 ShopMVC – ASP.NET Core MVC Project (3-Tier Architecture)
 
 ## 💡 Project Summary
 
