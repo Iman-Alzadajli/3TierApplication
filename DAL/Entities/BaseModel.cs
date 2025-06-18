@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class BaseModel
+    public class BaseModel 
     {
-        public int Id { get; set; }
+        public int Id { get; set; } // base 
     }
 }
